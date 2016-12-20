@@ -31,12 +31,10 @@ const BoardView = Backbone.View.extend({
   markPosition: function(event) {
     console.log(event.currentTarget.id);
 
-    // this should eventually set the positions array equal to whoever's turn it is, not hardcoded to "X";
-    this.positions[event.currentTarget.id] = "X";
+    this.trigger('userPlay', {model: this.model, position: event.currentTarget.id});
     console.log('markPosition called');
     this.render();
   }
-
 });
 
 export default BoardView;

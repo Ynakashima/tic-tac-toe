@@ -3,6 +3,11 @@ import Board from 'app/models/board';
 //may need to import board model
 
 const Game = Backbone.Model.extend({
+  defaults: {
+    winner: undefined,
+    isOver: false
+  },
+
   initialize: function(options) {
     //for each game we make 2 players
     this.player1 = "X";
@@ -12,7 +17,6 @@ const Game = Backbone.Model.extend({
 
     //starting game with turn being equal to player 1 (X)
     this.turn = this.player1;
-    this.winner = undefined;
   },
 
   toggleTurn: function () {
@@ -30,6 +34,7 @@ const Game = Backbone.Model.extend({
         return false;
       }
     }
+    this.set({isOver: true});
     return true;
   },
 
@@ -79,6 +84,8 @@ const Game = Backbone.Model.extend({
 
   gameWin: function () {
     if(this.winVertical() || this.winHorizontal() || this.winDiagonal()) {
+      this.set({isOver: true});
+      console.log(this.get('isOver'));
       return true;
     } else {
       return false;

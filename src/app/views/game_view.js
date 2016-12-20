@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import Backbone from 'backbone';
 import Game from 'app/models/game';
 import Board from 'app/models/board';
@@ -12,7 +13,9 @@ const GameView = Backbone.View.extend({
       el: '.board',
       model: playBoard
     });
-
+    this.listenTo(board, 'userPlay', this.turnPlay);
+    // this.listenTo(this.model.on('change: isOver', this.showEnd, this));
+    this.listenTo(this.model, 'change:isOver', this.showEnd);
     board.render();
   },
 
@@ -23,6 +26,20 @@ const GameView = Backbone.View.extend({
 
   events: {
     'click button': 'restartGame'
+  },
+
+  turnPlay: function(options) {
+    console.log('turnPlay called');
+    console.log();
+    if (this.model.winner === undefined){ this.model.takeTurn(JSON.parse(options.position));
+    } else {
+      console.log(this.model.winner);
+    }
+  },
+
+  showEnd: function(options) {
+    console.log('showEnd called');
+    $('.end-of-game').fadeIn();
   },
 
   restartGame: function(event) {

@@ -1,3 +1,7 @@
+.end-of-game {
+  display: none;
+}
+
 ul {
   width: 50%;
   list-style: none;
