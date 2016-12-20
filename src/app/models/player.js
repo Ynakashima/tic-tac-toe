@@ -5,9 +5,6 @@ const Player = Backbone.Model.extend({
 // Player.prototype.play = function (position) {
 //     return position;
 // };
-
-
-
 });
 
 
