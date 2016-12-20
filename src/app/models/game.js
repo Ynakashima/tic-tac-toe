@@ -1,15 +1,12 @@
 import Backbone from 'backbone';
 import Board from 'app/models/board';
-import Player from 'app/models/player';
 //may need to import board model
 
 const Game = Backbone.Model.extend({
   initialize: function(options) {
     //for each game we make 2 players
-    this.player1 = new Player();
-    this.player1.mark = "X";
-    this.player2 = new Player();
-    this.player2.mark = "O";
+    this.player1 = "X";
+    this.player2 = "O";
 
     this.board = new Board();
 
@@ -90,7 +87,7 @@ const Game = Backbone.Model.extend({
 
   takeTurn: function (position) {
     //this.turn is whose turn it is
-    this.board.markPlay(this.turn.mark, position);
+    this.board.markPlay(this.turn, position);
 
     //let that exception fly!
     if (this.gameWin()) {
