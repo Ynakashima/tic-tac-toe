@@ -13,4 +13,8 @@ li {
   background-color: pink;
   padding: 5px;
   border: 1px solid white;
+  line-height: 100px;
+  font-size: 4em;
+  color: white;
+  text-align: center;
 }
