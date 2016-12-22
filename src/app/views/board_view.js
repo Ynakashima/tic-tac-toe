@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import Backbone from 'backbone';
 import Board from 'app/models/board';
 
@@ -26,6 +27,7 @@ const BoardView = Backbone.View.extend({
 
   events: {
     'click li': 'markPosition'
+    // 'click $('#play-again')': 'clearBoard'
   },
 
   markPosition: function(event) {
@@ -34,7 +36,12 @@ const BoardView = Backbone.View.extend({
     this.trigger('userPlay', {model: this.model, position: event.currentTarget.id});
     console.log('markPosition called');
     this.render();
-  }
+  },
+
+  // clearBoard: function(event) {
+  //   console.log('clearBoard called');
+  //   this.model.destroy();
+  // }
 });
 
 export default BoardView;

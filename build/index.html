@@ -16,8 +16,8 @@
       </header>
 
       <section class="end-of-game" class="row">
-        <div class="small-6 columns" id="win-banner">Someone Won</div>
-        <button class="button small-6 columns" type="button" id="play-again">Play Again</button>
+        <div class="small-6 columns" id="win-banner">We Have a Winner!</div>
+        <button class="button small-6 columns" type="button" id="play-again" onClick="window.location.reload()">Play Again</button>
       </section>
 
       <section class="board">
@@ -32,6 +32,10 @@
           <li class="column" id="7"></li>
           <li class="column" id="8"></li>
         </ul>
+      </section>
+
+      <section class="save-win row">
+        <button class="small-12 columns" type="button" id="save-this-win">Save Your Win</button>
       </section>
 
     </article>

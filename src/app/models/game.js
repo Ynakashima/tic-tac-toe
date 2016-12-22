@@ -1,3 +1,4 @@
+
 import Backbone from 'backbone';
 import Board from 'app/models/board';
 //may need to import board model
@@ -6,6 +7,26 @@ const Game = Backbone.Model.extend({
   defaults: {
     winner: undefined,
     isOver: false
+  },
+
+  url: 'http://localhost:3000/api/v1/games',
+  parse: function(response) {
+    return response;
+  },
+
+  toJSON : function() {
+    console.log(">>>>" + this.board.positions);
+    console.log(this.winner);
+
+    var object = {
+      "board": this.board.positions,
+      "players": ["X Player", "O Player"],
+      "outcome": this.get("winner"),
+
+
+    };
+    console.log(object);
+    return object;
   },
 
   initialize: function(options) {
@@ -35,6 +56,7 @@ const Game = Backbone.Model.extend({
       }
     }
     this.set({isOver: true});
+    this.save();
     return true;
   },
 
@@ -86,6 +108,7 @@ const Game = Backbone.Model.extend({
     if(this.winVertical() || this.winHorizontal() || this.winDiagonal()) {
       this.set({isOver: true});
       console.log(this.get('isOver'));
+      this.save();
       return true;
     } else {
       return false;

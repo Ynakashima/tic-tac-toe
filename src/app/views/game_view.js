@@ -40,6 +40,7 @@ const GameView = Backbone.View.extend({
   showEnd: function(options) {
     console.log('showEnd called');
     $('.end-of-game').fadeIn();
+    $('.save-win').fadeIn();
   },
 
   restartGame: function(event) {
@@ -61,6 +62,7 @@ const GameView = Backbone.View.extend({
     model: game
   });
   newGame.render();
+  console.log(game.get('isOver'));
   }
 });
 
