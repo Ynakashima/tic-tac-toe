@@ -18,7 +18,7 @@ const Game = Backbone.Model.extend({
 
   toJSON : function() {
     console.log(">>>>" + this.board.positions);
-    console.log(this.winner);
+    console.log(this.get("winner"));
 
     var object = {
       "board": this.board.positions,
