@@ -11,7 +11,9 @@ const Game = Backbone.Model.extend({
 
   url: 'http://localhost:3000/api/v1/games',
   parse: function(response) {
+    console.log(response);
     return response;
+
   },
 
   toJSON : function() {
@@ -22,8 +24,6 @@ const Game = Backbone.Model.extend({
       "board": this.board.positions,
       "players": ["X Player", "O Player"],
       "outcome": this.get("winner"),
-
-
     };
     console.log(object);
     return object;
@@ -64,7 +64,7 @@ const Game = Backbone.Model.extend({
     for(var i = 0; i < this.board.positions.length; i += 3){
       if ((this.board.positions[i] == this.board.positions[i+1]) && (this.board.positions[i] == this.board.positions[i+2])){
         if(this.board.positions[i] != " "){
-          this.winner = this.turn;
+          this.set("winner", this.turn);
           return true;
         }
       }
@@ -76,7 +76,7 @@ const Game = Backbone.Model.extend({
     for(var i = 0; i < 3; i++) {
       if((this.board.positions[i] == this.board.positions[i+3]) && (this.board.positions[i] == this.board.positions[i+6])) {
         if(this.board.positions[i] != " ") {
-          this.winner = this.turn;
+          this.set("winner", this.turn);
           return true;
         }
       }
@@ -92,13 +92,13 @@ const Game = Backbone.Model.extend({
 
     // this is the left to right diagonal
     if((this.board.positions[0] == this.board.positions[4]) && (this.board.positions[0] == this.board.positions[8])) {
-      this.winner = this.turn;
+      this.set("winner", this.turn);
       return true;
     }
 
     // this is the right to left diagonal
     if((this.board.positions[2] == this.board.positions[4]) && (this.board.positions[2] == this.board.positions[6])) {
-      this.winner = this.turn;
+      this.set("winner", this.turn);
       return true;
     }
     return false;
